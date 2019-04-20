@@ -13,11 +13,11 @@
 
 double fx(double n, double x)
 {
-    double somme = 1;
+    double resultat = 1;
     for (int k = 0; k <= n; k++)
         if (x != 0)
-            somme *= (sin(x / ((2 * k) + 1)) / (x / ((2 * k) + 1)));
-    return somme;
+            resultat *= (sin(x / ((2 * k) + 1)) / (x / ((2 * k) + 1)));
+    return resultat;
 }
 
 void midpoint_res(double n)
@@ -25,14 +25,14 @@ void midpoint_res(double n)
     double a = 0.0;
     double b = 5000.0;
     double h = (b - a) / 10000.0;
-    double somme = 0;
-    double i = a;
+    double resultat = 0;
+    double i = a + 1;
     for (; i < 10000.0; i++)
-        somme += fx(n, a + i * h);
-    somme *= (b - a) / 10000.0;
+        resultat += fx(n, a + i * h);
+    resultat *= (b - a) / 10000.0;
     printf("Midpoint:\n");
-    printf("I%0.0lf: %.10f\n", n, somme);
-    printf("diff: %.10f\n\n", somme - M_PI / 2);
+    printf("I%0.0lf: %.10f\n", n, resultat);
+    printf("diff: %.10f\n\n", resultat - M_PI / 2);
 }
 
 void trapezoidal_res(double n)
@@ -40,14 +40,14 @@ void trapezoidal_res(double n)
     double a = 0.0;
     double b = 5000.0;
     double h = (b - a) / 10000.0;
-    double somme = 0;
+    double resultat = 0;
     double i = a + 1;
     for (; i < 10000.0; i++)
-        somme += fx(n, a + i * h);
-    somme = ((somme * 2) + fx(n, a) + fx(n, b)) * ((b - a) / (2 * 10000.0));
+        resultat += fx(n, a + i * h);
+    resultat = ((resultat * 2) + fx(n, a) + fx(n, b)) * ((b - a) / (2 * 10000.0));
     printf("Trapezoidal:\n");
-    printf("I%0.0lf: %.10f\n", n, somme);
-    printf("diff: %.10f\n\n", fabs(somme - M_PI / 2));
+    printf("I%0.0lf: %.10f\n", n, resultat);
+    printf("diff: %.10f\n\n", fabs(resultat - M_PI / 2));
 }
 
 void simpson_res(double n)
@@ -55,18 +55,18 @@ void simpson_res(double n)
     double a = 0.0;
     double b = 5000.0;
     double h = (b - a) / 10000.0;
-    double somme1 = 0;
-    double somme2 = 0;
-    double somme3 = 0;
+    double resultat1 = 0;
+    double resultat2 = 0;
+    double resultat3 = 0;
     double i = a + 1;
     for (; i < 10000.0; i++)
-        somme1 += fx(n, a + i * h);
+        resultat1 += fx(n, a + i * h);
     for (i = 0; i < 10000.0; i++)
-        somme2 += fx(n, (a + i * h) + (h / 2));
-    somme3 = ((somme1 * 2) + (somme2 * 4) + fx(n, a) + fx(n, b)) * ((b - a) / (6 * 10000.0));
+        resultat2 += fx(n, (a + i * h) + (h / 2));
+    resultat3 = ((resultat1 * 2) + (resultat2 * 4) + fx(n, a) + fx(n, b)) * ((b - a) / (6 * 10000.0));
     printf("Simpson:\n");
-    printf("I%0.0lf: %.10f\n", n, somme3);
-    printf("diff: %.10f\n", fabs(somme3 - M_PI / 2));
+    printf("I%0.0lf: %.10f\n", n, resultat3);
+    printf("diff: %.10f\n", fabs(resultat3 - M_PI / 2));
 }
 
 int h_verified(void)
@@ -86,8 +86,8 @@ int main(int ac, char **av)
             return 84;
     }
     double n = atof(av[1]);
-    midpoint(n);
-    trapezoidal(n);
-    simpson(n);
+    midpoint_res(n);
+    trapezoidal_res(n);
+    simpson_res(n);
     return (0);
 }
