@@ -69,29 +69,6 @@ void simpson_res(double n)
     printf("diff: %.10f\n", fabs(somme3 - M_PI / 2));
 }
 
-/*int gauss(int tab[])
-{
-  double    a = tab[1];
-  double    b = tab[2];
-  double    h = (b - a) / tab[3];
-  double    somme = 0;
-  int       i = a;
-
-  if (b > 0)
-    while (++i < tab[3])
-      somme += fx(tab[0], (((b - a) / 2) * i + (a + b) / 2));
-  else
-    while (--i > tab[3])
-      somme += fx(tab[0], (((b - a) / 2) * i + (a + b) / 2));
-
-  somme *= h * (b - a) / 2;
-
-  printf("\033[01;04;37mMéthode de Gauss:\n\033[0m");
-  printf("I%d: %.*f\n", tab[0], tab[4], somme);
-  printf("Diff: %.*f\n", tab[4], somme - M_PI / 2);
-  return (0);
-}*/
-
 int h_verified(void)
 {
     printf("USAGE\n    ./110borwein n\n\nDESCRIPTION\n    n   constant defining the integral to be compute\n");
