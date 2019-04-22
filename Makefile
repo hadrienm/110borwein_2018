@@ -7,12 +7,12 @@
 
 NAME	= 110borwein
 
-CC	= gcc
+CC	= gcc -lm
 
 
 RM	= rm -f
 
-SRCS	= 	110borwein.c
+SRCS	= 	110_borwein.c
 
 OBJS	= $(SRCS:.c=.o)
 
