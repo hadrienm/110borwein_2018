@@ -5,10 +5,10 @@
 ** 110borwein
 */
 
+#include <math.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <math.h>
 #include <string.h>
 
 double fx(double n, double x)
@@ -31,8 +31,8 @@ void midpoint_res(double n)
     }
     resultat *= h;
     printf("Midpoint:\n");
-    printf("I%0.0lf: %.10f\n", n, resultat);
-    printf("diff: %.10f\n\n", fabs(resultat - M_PI / 2));
+    printf("I%0.0lf = %.10f\n", n, resultat);
+    printf("diff = %.10f\n\n", fabs(resultat - M_PI / 2));
 }
 
 void trapezoidal_res(double n)
@@ -46,8 +46,8 @@ void trapezoidal_res(double n)
         resultat += fx(n, i * h);
     resultat = ((resultat * 2) + 1 + fx(n, b)) * (b / (2 * 10000.0));
     printf("Trapezoidal:\n");
-    printf("I%0.0lf: %.10f\n", n, resultat);
-    printf("diff: %.10f\n\n", fabs(resultat - M_PI / 2));
+    printf("I%0.0lf = %.10f\n", n, resultat);
+    printf("diff = %.10f\n\n", fabs(resultat - M_PI / 2));
 }
 
 void simpson_res(double n)
@@ -65,8 +65,8 @@ void simpson_res(double n)
         resultat2 += fx(n, (i * h) + (h / 2));
     resultat3 = ((resultat1 * 2) + (resultat2 * 4) + 1 + fx(n, b)) * ((b - a) / (6 * 10000.0));
     printf("Simpson:\n");
-    printf("I%0.0lf: %.10f\n", n, resultat3);
-    printf("diff: %.10f\n", fabs(resultat3 - M_PI / 2));
+    printf("I%0.0lf = %.10f\n", n, resultat3);
+    printf("diff = %.10f\n", fabs(resultat3 - M_PI / 2));
 }
 
 int h_verified(void)
@@ -77,7 +77,7 @@ int h_verified(void)
 
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if (ac != 2)
         return 84;
     if (ac == 2 && strlen(av[1]) == 2 && av[1][0] == '-' && av[1][1] == 'h')
         return h_verified();
