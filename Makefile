@@ -7,12 +7,12 @@
 
 NAME	= 110borwein
 
-CC	= gcc -lm
-
+CC	= gcc
 
 RM	= rm -f
 
-SRCS	= 	110_borwein.c
+SRCS	= 	110_borwein.c			\
+			main.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -20,11 +20,11 @@ CFLAGS = -I ./include
 
 all: $(NAME)
 
-##tests_run:
-##				cd tests/ && $(MAKE)
+tests_run:
+				cd tests/ && $(MAKE)
 
 $(NAME): $(OBJS)
-	 $(CC) $(OBJS) -o $(NAME) $(CFLAGS)
+	$(CC) $(OBJS) -lm -o $(NAME) $(CFLAGS)
 
 clean:
 	$(RM) $(OBJS)

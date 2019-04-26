@@ -5,11 +5,7 @@
 ** 110borwein
 */
 
-#include <math.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include "my.h" 
 
 double fx(double n, double x)
 {
@@ -73,21 +69,4 @@ int h_verified(void)
 {
     printf("USAGE\n    ./110borwein n\n\nDESCRIPTION\n    n   constant defining the integral to be compute\n");
     return 0;
-}
-
-int main(int ac, char **av)
-{
-    if (ac != 2)
-        return 84;
-    if (ac == 2 && strlen(av[1]) == 2 && av[1][0] == '-' && av[1][1] == 'h')
-        return h_verified();
-    for (size_t i = 0; i < strlen(av[1]); ++i) {
-        if (av[1][i] < 48 || av[1][i] > 57)
-            return 84;
-    }
-    double n = atof(av[1]);
-    midpoint_res(n);
-    trapezoidal_res(n);
-    simpson_res(n);
-    return (0);
 }
